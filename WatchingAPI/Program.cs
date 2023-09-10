@@ -1,4 +1,6 @@
 using Company.Persistence.DB;
+using Watching.Application.Interfaces;
+using Watching.Persistence.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IWatchingNameRepository, WatchingNameRepository>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
