@@ -25,10 +25,20 @@ namespace WatchingAPI.Controllers
             return await _watchingNameRepository.GetAllEntity();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getWatchingName")]
         public async Task<ActionResult<WatchingName>> GetWatchingName(int id)
         {
             var result = await _watchingNameRepository.GetEntity(id);
+            if (result is null)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("searchWithName")]
+        public async Task<ActionResult<WatchingName>> SearchWithName(string name)
+        {
+            var result = await _watchingNameRepository.SearchWithName(name);
             if (result is null)
                 return BadRequest(result);
 

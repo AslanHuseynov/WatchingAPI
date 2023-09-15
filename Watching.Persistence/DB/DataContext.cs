@@ -8,6 +8,7 @@ namespace Company.Persistence.DB
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<WatchingName> WatchingNames { get; set; }
+        public DbSet<WatchList> WatchLists { get; set; }
 
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
@@ -17,7 +18,7 @@ namespace Company.Persistence.DB
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=DESKTOP-THVOU75\\MSSQLSERVER02;Database=WatchingAPI;Trusted_Connection=true;TrustServerCertificate=true;", b => b.MigrationsAssembly("API"));
+            optionsBuilder.UseSqlServer("Server=DESKTOP-THVOU75\\MSSQLSERVER02;Database=WatchingAPI;Trusted_Connection=true;TrustServerCertificate=true;", b => b.MigrationsAssembly("WatchingAPI"));
         }
     }
 }
