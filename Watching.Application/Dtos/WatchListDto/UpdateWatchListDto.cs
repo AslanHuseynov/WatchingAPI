@@ -3,6 +3,6 @@
     public class UpdateWatchListDto : BaseWatchListDto
     {
         public int Id { get; set; }
-        public bool IsChecked { get; set; }
+        public bool IsTagged { get; set; }
     }
 }

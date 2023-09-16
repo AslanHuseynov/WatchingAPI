@@ -63,7 +63,7 @@ namespace WatchingAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsChecked = table.Column<bool>(type: "bit", nullable: false),
+                    IsTagged = table.Column<bool>(type: "bit", nullable: false),
                     WatchingNameId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },

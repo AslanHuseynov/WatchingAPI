@@ -1,5 +1,5 @@
 using Company.Persistence.DB;
-using Watching.Application.Dtos.WatchingNameDto;
+using Watching.Application.Dtos.ContentDto;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
 using Watching.Persistence.Services;
@@ -14,9 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IWatchingNameRepository, WatchingNameRepository>();
+builder.Services.AddScoped<IContentRepository, ContentRepository>();
 builder.Services.AddScoped<IWatchListRepository, WatchListRepository>();
-builder.Services.AddAutoMapper(typeof(CreateWatchingNameDto).Assembly);
+builder.Services.AddAutoMapper(typeof(CreateContentDto).Assembly);
 builder.Services.AddAutoMapper(typeof(CreateWatchListDto).Assembly);
 builder.Services.AddDbContext<DataContext>();
 

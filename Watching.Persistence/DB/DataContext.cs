@@ -7,8 +7,9 @@ namespace Company.Persistence.DB
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<WatchingName> WatchingNames { get; set; }
+        public DbSet<Content> Contents { get; set; }
         public DbSet<WatchList> WatchLists { get; set; }
+        public DbSet<Content2WatchList> Content2WatchLists { get; set; }
 
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)

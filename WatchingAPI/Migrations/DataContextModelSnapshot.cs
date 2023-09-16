@@ -63,7 +63,7 @@ namespace WatchingAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsChecked")
+                    b.Property<bool>("IsTagged")
                         .HasColumnType("bit");
 
                     b.Property<int>("UserId")

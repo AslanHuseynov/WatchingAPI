@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Watching.Application.Dtos.WatchingNameDto;
+using Watching.Application.Dtos;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
 using Watching.Model.Models;
@@ -11,23 +10,31 @@ namespace WatchingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WatchinListController : ControllerBase
+    public class WatchListController : ControllerBase
     {
         private readonly IWatchListRepository _watchListRepository;
         private readonly IMapper _mapper;
 
-        public WatchinListController(IWatchListRepository watchListRepository, IMapper mapper)
+        public WatchListController(IWatchListRepository watchListRepository, IMapper mapper)
         {
             _watchListRepository = watchListRepository;
             _mapper = mapper;
         }
 
+
         [HttpPost]
-        public async Task<ActionResult<List<WatchList>>> AddToWatchList(CreateWatchListDto createWatchListDto)
+        public async Task<ActionResult<int>> CreateWatchList(CreateWatchListDto createWatchListDto)
         {
-            var list = _mapper.Map<WatchList>(createWatchListDto);
-            var result = await _watchListRepository.AddToWatchList(list);
+            var watchList = _mapper.Map<WatchList>(createWatchListDto);
+            var result = await _watchListRepository.CreateWatchList(watchList);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> AddToWatchList(int contentId, int userId)
+        {
+            var content2WatchList = await _watchListRepository.AddToWatchList(contentId, userId);
+            return Ok(content2WatchList.Id);
         }
 
         [HttpGet]
@@ -40,17 +47,13 @@ namespace WatchingAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("updateWatchList/{id}")]
-        public async Task<ActionResult<List<WatchList>>> UpdateWatchList(int id, UpdateWatchListDto updateWatchListDto)
+        [HttpPut("TagContent/{id}")]
+        public async Task<ActionResult<List<WatchList>>> TagContent(TagContent tagContent)
         {
-            if (id != updateWatchListDto.Id)
-            {
-                return NotFound("Not found.");
-            }
 
             try
             {
-                await _watchListRepository.UpdateIsCheckedAsync(id, updateWatchListDto.IsChecked);
+                await _watchListRepository.UpdateIsTaggedAsync(tagContent);
                 var updatedList = await _watchListRepository.GetWatchListAsync(); // Get the updated list of items.
 
                 return Ok(updatedList);
@@ -59,6 +62,15 @@ namespace WatchingAPI.Controllers
             {
                 return NotFound(ex.Message);
             }
+        }
+
+
+        [HttpDelete]
+        public async Task<ActionResult<List<WatchList>>> Delete(int id)
+        {
+            await _watchListRepository.DeleteEntity(id);
+            var watchList = await _watchListRepository.GetWatchListAsync();
+            return Ok(watchList);
         }
     }
 }
