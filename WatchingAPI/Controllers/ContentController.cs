@@ -25,7 +25,7 @@ namespace WatchingAPI.Controllers
             return await _contentRepository.GetAllEntity();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Content>> Content(int id)
         {
             var result = await _contentRepository.GetEntity(id);
@@ -35,7 +35,7 @@ namespace WatchingAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("{name}")]
         public async Task<ActionResult<Content>> Search(string name)
         {
             var result = await _contentRepository.SearchWithName(name);

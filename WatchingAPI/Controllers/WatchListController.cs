@@ -30,7 +30,7 @@ namespace WatchingAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("AddToWatchList/id")]
         public async Task<ActionResult<int>> AddToWatchList(int contentId, int userId)
         {
             var content2WatchList = await _watchListRepository.AddToWatchList(contentId, userId);
