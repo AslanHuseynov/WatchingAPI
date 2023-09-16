@@ -48,13 +48,13 @@ namespace WatchingAPI.Controllers
         }
 
         [HttpPut("TagContent/{id}")]
-        public async Task<ActionResult<List<WatchList>>> TagContent(TagContent tagContent)
+        public async Task<ActionResult<List<Content2WatchList>>> TagContent(TagContent tagContent)
         {
 
             try
             {
                 await _watchListRepository.UpdateIsTaggedAsync(tagContent);
-                var updatedList = await _watchListRepository.GetWatchListAsync(); // Get the updated list of items.
+                var updatedList = await _watchListRepository.GetWatchListAsync();
 
                 return Ok(updatedList);
             }

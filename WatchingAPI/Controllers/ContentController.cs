@@ -35,7 +35,7 @@ namespace WatchingAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{name}")]
+        [HttpGet("name")]
         public async Task<ActionResult<Content>> Search(string name)
         {
             var result = await _contentRepository.SearchWithName(name);

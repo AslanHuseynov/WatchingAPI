@@ -8,7 +8,7 @@
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public int WatchListId { get; set; }
+        public int? WatchListId { get; set; }
         public WatchList WatchList { get; set; }
     }
 }
