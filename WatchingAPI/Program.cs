@@ -1,7 +1,10 @@
 using Company.Persistence.DB;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Watching.Application.Dtos.ContentDto;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
+using Watching.Application.Validators;
 using Watching.Persistence.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
