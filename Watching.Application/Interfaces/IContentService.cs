@@ -2,7 +2,7 @@
 
 namespace Watching.Application.Interfaces
 {
-    public interface IContentRepository : IGenericRepository<Content>
+    public interface IContentService : IGenericService<Content>
     {
         Task<Content?> SearchWithName(string name);
     }

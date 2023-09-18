@@ -3,7 +3,7 @@ using Watching.Model.Models;
 
 namespace Watching.Application.Interfaces
 {
-    public interface IWatchListRepository
+    public interface IWatchListService
     {
         Task<List<WatchList>> GetWatchListAsync();
         Task<Content2WatchList> AddToWatchList(int watchListId, int contentId);

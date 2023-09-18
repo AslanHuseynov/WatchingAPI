@@ -5,9 +5,9 @@ using Watching.Model.Models;
 
 namespace Watching.Persistence.Services
 {
-    public class ContentRepository : GenericRepository<Content>, IContentRepository
+    public class ContentService : GenericService<Content>, IContentService
     {
-        public ContentRepository(DataContext db) : base(db)
+        public ContentService(DataContext db) : base(db)
         { 
         }
 

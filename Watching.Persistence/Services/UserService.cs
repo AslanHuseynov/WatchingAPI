@@ -4,9 +4,9 @@ using Watching.Model.Models;
 
 namespace Watching.Persistence.Services
 {
-    public class UserRepository : GenericRepository<User>, IUserRepository
+    public class UserService : GenericService<User>, IUserService
     {
-        public UserRepository(DataContext db) : base(db)
+        public UserService(DataContext db) : base(db)
         {
         }
     }

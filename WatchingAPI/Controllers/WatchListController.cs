@@ -12,12 +12,12 @@ namespace WatchingAPI.Controllers
     [ApiController]
     public class WatchListController : ControllerBase
     {
-        private readonly IWatchListRepository _watchListRepository;
+        private readonly IWatchListService _watchListService;
         private readonly IMapper _mapper;
 
-        public WatchListController(IWatchListRepository watchListRepository, IMapper mapper)
+        public WatchListController(IWatchListService watchListService, IMapper mapper)
         {
-            _watchListRepository = watchListRepository;
+            _watchListService = watchListService;
             _mapper = mapper;
         }
 
@@ -26,21 +26,21 @@ namespace WatchingAPI.Controllers
         public async Task<ActionResult<int>> CreateWatchList(CreateWatchListDto createWatchListDto)
         {
             var watchList = _mapper.Map<WatchList>(createWatchListDto);
-            var result = await _watchListRepository.CreateWatchList(watchList);
+            var result = await _watchListService.CreateWatchList(watchList);
             return Ok(result);
         }
 
         [HttpPost("AddToWatchList/id")]
         public async Task<ActionResult<int>> AddToWatchList(int contentId, int userId)
         {
-            var content2WatchList = await _watchListRepository.AddToWatchList(contentId, userId);
+            var content2WatchList = await _watchListService.AddToWatchList(contentId, userId);
             return Ok(content2WatchList.Id);
         }
 
         [HttpGet]
         public async Task<ActionResult<List<WatchList>>> GetWithUser(int userId)
         {
-            var result = await _watchListRepository.GetWithUser(userId);
+            var result = await _watchListService.GetWithUser(userId);
             if (result is null)
                 return NotFound("Not found.");
 
@@ -53,8 +53,8 @@ namespace WatchingAPI.Controllers
 
             try
             {
-                await _watchListRepository.UpdateIsTaggedAsync(tagContent);
-                var updatedList = await _watchListRepository.GetWatchListAsync();
+                await _watchListService.UpdateIsTaggedAsync(tagContent);
+                var updatedList = await _watchListService.GetWatchListAsync();
 
                 return Ok(updatedList);
             }
@@ -68,8 +68,8 @@ namespace WatchingAPI.Controllers
         [HttpDelete]
         public async Task<ActionResult<List<WatchList>>> Delete(int id)
         {
-            await _watchListRepository.DeleteEntity(id);
-            var watchList = await _watchListRepository.GetWatchListAsync();
+            await _watchListService.DeleteEntity(id);
+            var watchList = await _watchListService.GetWatchListAsync();
             return Ok(watchList);
         }
     }

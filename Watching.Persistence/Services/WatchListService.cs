@@ -6,11 +6,11 @@ using Watching.Model.Models;
 
 namespace Watching.Persistence.Services
 {
-    public class WatchListRepository : IWatchListRepository
+    public class WatchListService : IWatchListService
     {
         private readonly DataContext _dbContext;
 
-        public WatchListRepository(DataContext dbContext)
+        public WatchListService(DataContext dbContext)
         {
             _dbContext = dbContext;
         }

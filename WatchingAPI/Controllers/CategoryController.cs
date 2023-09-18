@@ -10,25 +10,25 @@ namespace WatchingAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryRepository categoryRepository, IMapper mapper)
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
-            _categoryRepository = categoryRepository;
+            _categoryService = categoryService;
             _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Category>>> GetAllCategories()
         {
-            return await _categoryRepository.GetAllEntity();
+            return await _categoryService.GetAllEntity();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var result = await _categoryRepository.GetEntity(id);
+            var result = await _categoryService.GetEntity(id);
             if (result is null)
                 return BadRequest(result);
 
@@ -39,7 +39,7 @@ namespace WatchingAPI.Controllers
         public async Task<ActionResult<List<Category>>> CreateCategory(CreateCategoryDto createCategoryDto)
         {
             var category = _mapper.Map<Category>(createCategoryDto);
-            var result = await _categoryRepository.AddEntity(category);
+            var result = await _categoryService.AddEntity(category);
             return Ok(result);
         }
 
@@ -47,7 +47,7 @@ namespace WatchingAPI.Controllers
         public async Task<ActionResult<List<Category>>> UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
             var category = _mapper.Map<Category>(updateCategoryDto);
-            var result = await _categoryRepository.UpdateEntity(updateCategoryDto.Id, category);
+            var result = await _categoryService.UpdateEntity(updateCategoryDto.Id, category);
 
             return Ok(result);
         }
@@ -55,7 +55,7 @@ namespace WatchingAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Category>>> DeleteCategory(int id)
         {
-            var result = await _categoryRepository.DeleteEntity(id);
+            var result = await _categoryService.DeleteEntity(id);
             if (result is null)
                 return BadRequest(result);
 

@@ -1,6 +1,6 @@
 ﻿namespace Watching.Application.Interfaces
 {
-    public interface IGenericRepository<T>
+    public interface IGenericService<T>
     {
         Task<List<T>> GetAllEntity();
         Task<T?> GetEntity(int id);

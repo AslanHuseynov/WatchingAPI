@@ -2,7 +2,7 @@
 
 namespace Watching.Application.Interfaces
 {
-    public interface ICategoryRepository : IGenericRepository<Category>
+    public interface IUserService : IGenericService<User>
     {
     }
 }

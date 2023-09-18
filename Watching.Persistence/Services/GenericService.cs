@@ -4,10 +4,10 @@ using Watching.Application.Interfaces;
 
 namespace Watching.Persistence.Services
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericService<T> : IGenericService<T> where T : class
     {
         protected readonly DataContext _dbContext;
-        public GenericRepository(DataContext context)
+        public GenericService(DataContext context)
         {
             _dbContext = context;
         }

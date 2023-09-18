@@ -4,9 +4,9 @@ using Watching.Model.Models;
 
 namespace Watching.Persistence.Services
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class CategoryService : GenericService<Category>, ICategoryService
     {
-        public CategoryRepository(DataContext db) : base(db)
+        public CategoryService(DataContext db) : base(db)
         {
         }
     }
