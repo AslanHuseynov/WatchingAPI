@@ -11,8 +11,8 @@ namespace Watching.Application.Profiles
     {
         public AutoMapperProfile() 
         {
-            CreateMap<Category, CreateCategoryDto>().ReverseMap();
-            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryCommand>().ReverseMap();
+            CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
             CreateMap<User, CreateUserDto>().ReverseMap();
             CreateMap<User, UpdateUserDto>().ReverseMap();
             CreateMap<Content, CreateContentDto>().ReverseMap();

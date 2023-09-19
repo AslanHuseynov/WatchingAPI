@@ -1,6 +1,7 @@
 using Company.Persistence.DB;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Watching.Application.CommandHandlers.CategoryCommandHandlers;
 using Watching.Application.Dtos.ContentDto;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
@@ -31,6 +32,8 @@ builder.Services.AddScoped<IWatchListService, WatchListService>();
 builder.Services.AddAutoMapper(typeof(CreateContentDto).Assembly);
 builder.Services.AddAutoMapper(typeof(CreateWatchListDto).Assembly);
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<CreateCategoryCommandHandler>());
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<UpdateCategoryCommandHandler>());
 
 var app = builder.Build();
 
