@@ -62,6 +62,7 @@ namespace WatchingAPI.Controllers
             var result = await _mediatR.Send(query);
             if (result is null)
                 return NotFound();
+
             return Ok(result);
         }
     }

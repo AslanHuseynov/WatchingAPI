@@ -5,8 +5,8 @@ using Watching.Application.CommandHandlers.CategoryCommandHandlers;
 using Watching.Application.Dtos.ContentDto;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
-using Watching.Application.Validators.UserValidators;
 using Watching.Persistence.Services;
+using Watching.Persistence.Validators.UserValidators;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -46,7 +46,9 @@ namespace WatchingAPI.Controllers
         public async Task<ActionResult<List<Category>>> DeleteCategory([FromQuery]DeleteCategoryByIdQuery query)
         {
             var result = await _mediatR.Send(query);
-            if(result is null) return NotFound();
+            if(result is null) 
+                return NotFound();
+
             return Ok(result);
         }
     }
