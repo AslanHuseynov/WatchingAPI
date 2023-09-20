@@ -20,10 +20,8 @@
   <ItemGroup>
     <Folder Include="CommandHandlers\ContentCommandHandlers\" />
     <Folder Include="CommandHandlers\WatchListCommandHandlers\" />
-    <Folder Include="CommandHandlers\UserCommandHandlers\" />
     <Folder Include="Queries\ContentQueries\" />
     <Folder Include="Queries\WatchlistQueries\" />
-    <Folder Include="Queries\UserQueries\" />
   </ItemGroup>
 
 </Project>

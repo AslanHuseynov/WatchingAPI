@@ -13,8 +13,8 @@ namespace Watching.Application.Profiles
         {
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
-            CreateMap<User, CreateUserDto>().ReverseMap();
-            CreateMap<User, UpdateUserDto>().ReverseMap();
+            CreateMap<User, CreateUserCommand>().ReverseMap();
+            CreateMap<User, UpdateUserCommand>().ReverseMap();
             CreateMap<Content, CreateContentDto>().ReverseMap();
             CreateMap<Content, UpdateContentDto>().ReverseMap();
             CreateMap<WatchList, CreateWatchListDto>().ReverseMap();

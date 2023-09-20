@@ -5,7 +5,7 @@ using Watching.Application.Interfaces;
 namespace Watching.Application.Validators.UserValidators
 {
 
-    public class CreateUserValidator : AbstractValidator<CreateUserDto>
+    public class CreateUserValidator : AbstractValidator<CreateUserCommand>
     {
         private readonly IUserService _userService;
 
