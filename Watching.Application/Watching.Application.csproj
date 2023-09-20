@@ -18,9 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CommandHandlers\ContentCommandHandlers\" />
     <Folder Include="CommandHandlers\WatchListCommandHandlers\" />
-    <Folder Include="Queries\ContentQueries\" />
     <Folder Include="Queries\WatchlistQueries\" />
   </ItemGroup>
 

@@ -29,7 +29,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<IWatchListService, WatchListService>();
-builder.Services.AddAutoMapper(typeof(CreateContentDto).Assembly);
+builder.Services.AddAutoMapper(typeof(CreateContentCommand).Assembly);
 builder.Services.AddAutoMapper(typeof(CreateWatchListDto).Assembly);
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<CreateCategoryCommandHandler>());

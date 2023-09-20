@@ -15,8 +15,8 @@ namespace Watching.Application.Profiles
             CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
             CreateMap<User, CreateUserCommand>().ReverseMap();
             CreateMap<User, UpdateUserCommand>().ReverseMap();
-            CreateMap<Content, CreateContentDto>().ReverseMap();
-            CreateMap<Content, UpdateContentDto>().ReverseMap();
+            CreateMap<Content, CreateContentCommand>().ReverseMap();
+            CreateMap<Content, UpdateContentCommand>().ReverseMap();
             CreateMap<WatchList, CreateWatchListDto>().ReverseMap();
         }
     }
