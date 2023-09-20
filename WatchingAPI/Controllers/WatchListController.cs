@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Watching.Application.Dtos;
 using Watching.Application.Dtos.WatchListDto;
 using Watching.Application.Interfaces;
+using Watching.Application.Queries.WatchListQueries.DeleteWatchListByIdQuery;
+using Watching.Application.Queries.WatchListQueries.GetWatchListByUserQueries;
 using Watching.Model.Models;
 using Watching.Persistence.Services;
 
@@ -12,51 +15,41 @@ namespace WatchingAPI.Controllers
     [ApiController]
     public class WatchListController : ControllerBase
     {
+        private readonly IMediator _mediatR;
         private readonly IWatchListService _watchListService;
         private readonly IMapper _mapper;
 
-        public WatchListController(IWatchListService watchListService, IMapper mapper)
+        public WatchListController(IMediator mediator, IWatchListService watchListService, IMapper mapper)
         {
+            _mediatR = mediator;
             _watchListService = watchListService;
             _mapper = mapper;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> CreateWatchList(CreateWatchListDto createWatchListDto)
-        {
-            var watchList = _mapper.Map<WatchList>(createWatchListDto);
-            var result = await _watchListService.CreateWatchList(watchList);
-            return Ok(result);
-        }
+        public async Task<ActionResult<int>> CreateWatchList(CreateWatchListCommand command) 
+            => await _mediatR.Send(command);
 
         [HttpPost("AddToWatchList/id")]
-        public async Task<ActionResult<int>> AddToWatchList(int contentId, int userId)
-        {
-            var content2WatchList = await _watchListService.AddToWatchList(contentId, userId);
-            return Ok(content2WatchList.Id);
-        }
+        public async Task<ActionResult<Content2WatchList>> AddToWatchList(AddToWatchListCommand command) 
+            => await _mediatR.Send(command);
 
         [HttpGet]
-        public async Task<ActionResult<List<WatchList>>> GetWithUser(int userId)
+        public async Task<ActionResult<List<WatchList>>> GetWithUser([FromQuery]GetWatchListByUserQueries queries)
         {
-            var result = await _watchListService.GetWithUser(userId);
+            var result = await _mediatR.Send(queries);
             if (result is null)
-                return NotFound("Not found.");
-
+                return NotFound();
             return Ok(result);
         }
 
-        [HttpPut("TagContent/{id}")]
+        [HttpPut("TagContent/id")]
         public async Task<ActionResult<List<Content2WatchList>>> TagContent(TagContent tagContent)
         {
-
             try
             {
-                await _watchListService.UpdateIsTaggedAsync(tagContent);
-                var updatedList = await _watchListService.GetWatchListAsync();
-
-                return Ok(updatedList);
+                return await _mediatR.Send(tagContent);
             }
             catch (Exception ex)
             {
@@ -66,11 +59,11 @@ namespace WatchingAPI.Controllers
 
 
         [HttpDelete]
-        public async Task<ActionResult<List<WatchList>>> Delete(int id)
+        public async Task<ActionResult<List<WatchList>>> Delete([FromQuery]DeleteWatchListByIdQuery query)
         {
-            await _watchListService.DeleteEntity(id);
-            var watchList = await _watchListService.GetWatchListAsync();
-            return Ok(watchList);
+            var result = await _mediatR.Send(query);
+            if (result is null) return NotFound();
+            return Ok(result);
         }
     }
 }

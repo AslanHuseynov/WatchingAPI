@@ -30,7 +30,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<IWatchListService, WatchListService>();
 builder.Services.AddAutoMapper(typeof(CreateContentCommand).Assembly);
-builder.Services.AddAutoMapper(typeof(CreateWatchListDto).Assembly);
+builder.Services.AddAutoMapper(typeof(CreateWatchListCommand).Assembly);
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<CreateCategoryCommandHandler>());
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<UpdateCategoryCommandHandler>());

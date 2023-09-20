@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Watching.Application.Commands;
+using Watching.Model.Models;
 
 namespace Watching.Application.Dtos
 {
-    public class TagContent
+    public class TagContent : BaseCommand<List<Content2WatchList>>
     {
         public int WatchListId { get; set; }
         public int ContentId { get; set; }

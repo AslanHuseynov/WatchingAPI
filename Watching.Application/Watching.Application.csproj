@@ -17,9 +17,4 @@
     <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommandHandlers\WatchListCommandHandlers\" />
-    <Folder Include="Queries\WatchlistQueries\" />
-  </ItemGroup>
-
 </Project>

@@ -20,6 +20,11 @@ namespace Watching.Persistence.Services
             return await _dbContext.WatchLists.ToListAsync();
         }
 
+        public async Task<List<Content2WatchList>> GetContent2WatchListsAsync()
+        {
+            return await _dbContext.Content2WatchLists.ToListAsync();
+        }
+
         public async Task<int> CreateWatchList(WatchList watchList)
         {
             _dbContext.WatchLists.Add(watchList);
